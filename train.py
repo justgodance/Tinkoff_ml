@@ -47,27 +47,18 @@ def training(text):
     return list    
 
 
-# In[133]:
+# In[139]:
 
 
 def N_gram_model(dictionary, text, order):
     for j in range(1,order+1):
         for i in range(len(text)-j):
-            if j!=1:
-                window = tuple(text[i: i+j])
-            else:
-                window = text[i]
+            window = tuple(text[i: i+j])
             if window in dictionary:
                 dictionary[window] = training_update(dictionary, [text[i+j]], window)
             else:
                 dictionary[window] = training([text[i+j]])
     return dictionary
-
-
-# In[ ]:
-
-
-
 
 
 # In[ ]:

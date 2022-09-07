@@ -11,17 +11,18 @@ import random
 
 
 def generate_random_sentence(length, dictionary):
-    current_word = random.choice(list(dictionary.keys()))
-    if type(current_word) == tuple:
-        sentence = [str(item) for item in current_word]
-    else:
-        sentence = [current_word]
+    k=1
+    sentence = ()
+    list2 = [item for item in list(dictionary.keys()) if len(item)==k]
+    current_word = random.choice(list2)
     if current_word == "":
         return sentence
+    sentence = [str(item) for item in current_word]
     for i in range(0, length):
-        current_dictogram = dictionary[current_word]
-        random_word = random.choice(dictionary[current_word])
+        random_word = random.choice(dictionary[tuple(sentence)])
         current_word = random_word
+        if current_word == "":
+            return sentence
         sentence.append(current_word)
     return sentence
 
